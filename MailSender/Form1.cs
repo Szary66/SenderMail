@@ -19,10 +19,13 @@ namespace MailSender {
             ReadLogs();
         }
 
+        public ListView GetMails() {
+            return ListAllMails;
+        }
+
         void SaveLogs() {
             try {
                 using (StreamWriter outputFile = new StreamWriter("Logs.txt")) {
-                    outputFile.NewLine = "blabla";
                     foreach (ListViewItem item in ListSendedMails.Items)
                         outputFile.WriteLine(item.SubItems[0].Text);
                 }
@@ -66,7 +69,7 @@ namespace MailSender {
         private void LoadCSV_Click(object sender, EventArgs e) {
             ReadCSV();
         }
-        
+
         private void SendMail_Click(object sender, EventArgs e) {
             try {
                 MailMessage mail = new MailMessage();
@@ -80,7 +83,7 @@ namespace MailSender {
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("mailforath123@gmail.com", "lukasz123");
                 SmtpServer.EnableSsl = true;
-                
+
                 foreach (ListViewItem item in ListAllMails.Items) {
                     mail.To.Add(item.SubItems[0].Text);
                     SmtpServer.Send(mail);
@@ -91,6 +94,11 @@ namespace MailSender {
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void AddMailButton_Click(object sender, EventArgs e) {
+            AddMail AddMailForm = new MailSender.AddMail(this);
+            AddMailForm.Show();
         }
     }
 }

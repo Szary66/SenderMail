@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.LoadCSV = new System.Windows.Forms.Button();
             this.ListAllMails = new System.Windows.Forms.ListView();
-            this.AddMail = new System.Windows.Forms.Button();
+            this.AddMailButton = new System.Windows.Forms.Button();
             this.AllMails = new System.Windows.Forms.Label();
             this.SendedMails = new System.Windows.Forms.Label();
             this.SendMail = new System.Windows.Forms.Button();
@@ -57,14 +57,15 @@
             this.ListAllMails.UseCompatibleStateImageBehavior = false;
             this.ListAllMails.View = System.Windows.Forms.View.List;
             // 
-            // AddMail
+            // AddMailButton
             // 
-            this.AddMail.Location = new System.Drawing.Point(93, 296);
-            this.AddMail.Name = "AddMail";
-            this.AddMail.Size = new System.Drawing.Size(75, 23);
-            this.AddMail.TabIndex = 3;
-            this.AddMail.Text = "Add";
-            this.AddMail.UseVisualStyleBackColor = true;
+            this.AddMailButton.Location = new System.Drawing.Point(93, 296);
+            this.AddMailButton.Name = "AddMailButton";
+            this.AddMailButton.Size = new System.Drawing.Size(75, 23);
+            this.AddMailButton.TabIndex = 3;
+            this.AddMailButton.Text = "Add";
+            this.AddMailButton.UseVisualStyleBackColor = true;
+            this.AddMailButton.Click += new System.EventHandler(this.AddMailButton_Click);
             // 
             // AllMails
             // 
@@ -118,7 +119,7 @@
             this.Controls.Add(this.SendMail);
             this.Controls.Add(this.SendedMails);
             this.Controls.Add(this.AllMails);
-            this.Controls.Add(this.AddMail);
+            this.Controls.Add(this.AddMailButton);
             this.Controls.Add(this.ListAllMails);
             this.Controls.Add(this.LoadCSV);
             this.Name = "Form1";
@@ -132,7 +133,7 @@
 
         private System.Windows.Forms.Button LoadCSV;
         private System.Windows.Forms.ListView ListAllMails;
-        private System.Windows.Forms.Button AddMail;
+        private System.Windows.Forms.Button AddMailButton;
         private System.Windows.Forms.Label AllMails;
         private System.Windows.Forms.Label SendedMails;
         private System.Windows.Forms.Button SendMail;
