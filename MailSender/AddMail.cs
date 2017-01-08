@@ -36,6 +36,7 @@ namespace MailSender {
             if (emailBox.Text != "") {
                 MainForm.GetMails().Items.Add(emailBox.Text);
                 SaveCSV();
+                MainForm.Send(emailBox.Text);
                 this.Close();
             }
         }

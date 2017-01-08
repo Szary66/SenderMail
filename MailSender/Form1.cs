@@ -72,10 +72,22 @@ namespace MailSender {
 
         private void SendMail_Click(object sender, EventArgs e) {
             try {
+                foreach (ListViewItem item in ListAllMails.Items) {
+                    Send(item.SubItems[0].Text);
+                    ListSendedMails.Items.Add(item.SubItems[0].Text);
+                }
+                SaveLogs();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public void Send(string address) {
+            try {
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress("mailforath123@gmail.com");
-
+                mail.To.Add(address);
                 mail.Subject = "Test Mail";
                 mail.IsBodyHtml = true;
                 mail.Body = "<html><h1>Hello</h1><br /><p>Najlepsze życzenia z okazji świąt</p></html>";
@@ -83,14 +95,7 @@ namespace MailSender {
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("mailforath123@gmail.com", "lukasz123");
                 SmtpServer.EnableSsl = true;
-
-                foreach (ListViewItem item in ListAllMails.Items) {
-                    mail.To.Add(item.SubItems[0].Text);
-                    SmtpServer.Send(mail);
-                    ListSendedMails.Items.Add(item.SubItems[0].Text);
-
-                }
-                SaveLogs();
+                SmtpServer.Send(mail);
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString());
             }
